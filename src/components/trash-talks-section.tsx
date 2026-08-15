@@ -162,14 +162,14 @@ export function TrashTalksSection({
   return (
     <section
       id="trash-talks"
-      className="scroll-mt-24 border-t border-foreground/10 bg-background px-4 py-24 sm:px-6 sm:py-32 lg:px-8"
+      className="scroll-mt-24 border-t border-foreground/10 bg-background px-4 py-14 sm:px-6 sm:py-32 lg:px-8"
     >
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-12 text-center">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 text-center sm:gap-12">
         <div>
           <span className="font-mono text-xs uppercase tracking-[0.35em] text-accent">
             ETFC 02 &middot; Trash Talks
           </span>
-          <h2 className="mt-3 font-display text-5xl uppercase leading-[0.9] text-foreground sm:text-6xl lg:text-7xl">
+          <h2 className="mt-3 font-display text-4xl uppercase leading-[0.9] text-foreground sm:text-6xl lg:text-7xl">
             Trash Talks
           </h2>
           <p className="mx-auto mt-4 max-w-md text-foreground/70">
@@ -178,7 +178,7 @@ export function TrashTalksSection({
         </div>
 
         <div className="trashtalk-grid w-full">
-          <div data-area="left" className="grid grid-cols-1 gap-4">
+          <div data-area="left" className="grid grid-cols-2 gap-3 sm:grid-cols-1 sm:gap-4">
             {leftVideos.map((video) => (
               <VideoTile
                 key={video.id}
@@ -191,7 +191,7 @@ export function TrashTalksSection({
 
           <TrashTalkScreen video={activeVideo} />
 
-          <div data-area="right" className="grid grid-cols-1 gap-4">
+          <div data-area="right" className="grid grid-cols-2 gap-3 sm:grid-cols-1 sm:gap-4">
             {rightVideos.map((video) => (
               <VideoTile
                 key={video.id}

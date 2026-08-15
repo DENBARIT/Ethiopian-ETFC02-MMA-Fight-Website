@@ -148,7 +148,7 @@ export function IntroOverlay() {
               initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-5xl uppercase leading-[0.9] text-foreground drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)] sm:text-7xl md:text-8xl"
+              className="font-display text-4xl uppercase leading-[0.9] text-foreground drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)] sm:text-7xl md:text-8xl"
             >
               Adwa <span className="text-accent">Fight Night</span>
             </motion.h1>
@@ -157,7 +157,7 @@ export function IntroOverlay() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.65, duration: 0.5 }}
-              className="mt-1 font-display text-3xl uppercase text-accent sm:text-4xl"
+              className="mt-1 font-display text-2xl uppercase text-accent sm:text-4xl"
             >
               {TOTAL_MATCHES} Matches
             </motion.p>

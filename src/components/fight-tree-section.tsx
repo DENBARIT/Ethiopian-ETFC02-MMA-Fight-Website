@@ -54,14 +54,14 @@ export function FightTreeSection() {
   return (
     <section
       id="fight-tree"
-      className="scroll-mt-24 border-t border-foreground/10 bg-background px-4 py-24 sm:px-6 sm:py-32 lg:px-8"
+      className="scroll-mt-24 border-t border-foreground/10 bg-background px-4 py-14 sm:px-6 sm:py-32 lg:px-8"
     >
-      <div className="mx-auto flex max-w-5xl flex-col items-center gap-10 text-center">
+      <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 text-center sm:gap-10">
         <div>
           <span className="font-mono text-xs uppercase tracking-[0.35em] text-accent">
             ETFC 02 &middot; Bracket
           </span>
-          <h2 className="mt-3 font-display text-5xl uppercase leading-[0.9] text-foreground sm:text-6xl lg:text-7xl">
+          <h2 className="mt-3 font-display text-4xl uppercase leading-[0.9] text-foreground sm:text-6xl lg:text-7xl">
             Fight Tree
           </h2>
           <p className="mx-auto mt-4 max-w-md text-foreground/70">

@@ -7,7 +7,7 @@ export function SponsorsSection() {
   return (
     <section
       id="sponsors"
-      className="scroll-mt-24 border-t border-foreground/10 bg-background px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
+      className="scroll-mt-24 border-t border-foreground/10 bg-background px-4 py-12 sm:px-6 sm:py-24 lg:px-8"
     >
       <div className="mx-auto flex max-w-2xl flex-col items-center gap-3 text-center">
         <span className="font-mono text-xs uppercase tracking-[0.35em] text-accent">

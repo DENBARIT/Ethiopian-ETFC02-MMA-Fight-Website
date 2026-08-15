@@ -17,7 +17,7 @@ export function WhoWillWinSection() {
   return (
     <section
       id="who-will-win"
-      className="scroll-mt-24 border-t border-foreground/10 bg-background px-4 py-24 sm:px-6 sm:py-32 lg:px-8"
+      className="scroll-mt-24 border-t border-foreground/10 bg-background px-4 py-14 sm:px-6 sm:py-32 lg:px-8"
     >
       <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] lg:items-stretch lg:gap-6">
         {/* The outer column is as tall as the whole section (grid row
