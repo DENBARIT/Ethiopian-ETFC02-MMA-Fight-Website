@@ -1,24 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { BoxingRingScene } from "@/components/boxing-ring-scene";
 import { MmaCageScene } from "@/components/mma-cage-scene";
+import { MuayThaiCageScene } from "@/components/muaythai-cage-scene";
 import { PromoRail } from "@/components/promo-rail";
 import { PROMO_CARDS_LEFT, PROMO_CARDS_RIGHT } from "@/lib/promo-content";
 import { DEFAULT_DISCIPLINE, DISCIPLINES, type Discipline } from "@/lib/who-will-win-content";
-
-const FightArena3D = dynamic(() => import("@/components/fight-arena-3d"), {
-  ssr: false,
-  loading: () => (
-    <div className="flex h-full w-full items-center justify-center">
-      <span className="animate-pulse font-mono text-xs uppercase tracking-[0.2em] text-foreground/40">
-        Loading arena&hellip;
-      </span>
-    </div>
-  ),
-});
 
 export function WhoWillWinSection() {
   const [discipline, setDiscipline] = useState<Discipline>(DEFAULT_DISCIPLINE);
@@ -71,10 +61,11 @@ export function WhoWillWinSection() {
           <div className="mt-10 inline-flex flex-wrap items-center justify-center gap-1 rounded-full border border-foreground/15 p-1">
             {DISCIPLINES.map((option) => {
               const active = option.id === discipline;
-              // Only MMA has a lower selector to connect down to — the
-              // connector traces from this specific button's own rendered
-              // position (via the relative wrapper), not a guessed offset.
-              const showConnector = option.id === "mma" && active;
+              // Every discipline has a lower selector to connect down to —
+              // the connector traces from this specific button's own
+              // rendered position (via the relative wrapper), not a
+              // guessed offset.
+              const showConnector = active;
               return (
                 <div key={option.id} className="relative">
                   <button
@@ -108,16 +99,14 @@ export function WhoWillWinSection() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
-              className={
-                discipline === "mma"
-                  ? "relative mt-10 w-full max-w-6xl"
-                  : "relative mt-10 aspect-video w-full max-w-2xl overflow-hidden rounded-2xl border border-foreground/15 bg-black shadow-2xl shadow-black/50"
-              }
+              className="relative mt-10 w-full max-w-6xl"
             >
               {discipline === "mma" ? (
                 <MmaCageScene />
+              ) : discipline === "boxing" ? (
+                <BoxingRingScene />
               ) : (
-                <FightArena3D discipline={discipline} />
+                <MuayThaiCageScene />
               )}
             </motion.div>
           </AnimatePresence>

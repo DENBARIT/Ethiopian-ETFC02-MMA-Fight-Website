@@ -5,9 +5,12 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import { ConfettiBurst } from "@/components/confetti-burst";
 import { ConnectorLine, FighterVoteCard } from "@/components/fight-vote-card";
-import { DEFAULT_MMA_FIGHT_CARD, MMA_FIGHT_CARDS } from "@/lib/mma-fight-card-content";
+import {
+  DEFAULT_MUAYTHAI_FIGHT_CARD,
+  MUAYTHAI_FIGHT_CARDS,
+} from "@/lib/muaythai-fight-card-content";
 
-const MmaOctagonCage = dynamic(() => import("@/components/mma-octagon-cage"), {
+const MuayThaiCage3D = dynamic(() => import("@/components/muaythai-cage-3d"), {
   ssr: false,
   loading: () => (
     <div className="flex h-full w-full items-center justify-center">
@@ -18,18 +21,19 @@ const MmaOctagonCage = dynamic(() => import("@/components/mma-octagon-cage"), {
   ),
 });
 
-// MMA renders a real 3D octagon (see mma-octagon-cage.tsx) instead of the
-// procedural boxing/Muay Thai rings. The fight card is a textured plane
-// standing at the center of the cage floor, in the same scene and camera
-// as the fence — so both share one true perspective/vanishing point, and
-// the near struts occlude the card the way an actual cageside camera would.
-export function MmaCageScene() {
+// Same structure as mma-cage-scene.tsx and boxing-ring-scene.tsx: a real 3D
+// octagon cage (see muaythai-cage-3d.tsx) instead of a flat image, the fight
+// poster standing at its center, and contestant vote cards flanking it with
+// trace lines running out from the cage's flanks. The cage box itself is
+// left transparent (no bg/border) so it floats over the page.
+export function MuayThaiCageScene() {
   const reduceMotion = Boolean(useReducedMotion());
-  const [selectedId, setSelectedId] = useState(DEFAULT_MMA_FIGHT_CARD);
+  const [selectedId, setSelectedId] = useState(DEFAULT_MUAYTHAI_FIGHT_CARD);
   const [burstKey, setBurstKey] = useState(0);
   const [canvasKey, setCanvasKey] = useState(0);
 
-  const selected = MMA_FIGHT_CARDS.find((card) => card.id === selectedId) ?? MMA_FIGHT_CARDS[0];
+  const selected =
+    MUAYTHAI_FIGHT_CARDS.find((card) => card.id === selectedId) ?? MUAYTHAI_FIGHT_CARDS[0];
 
   const handleSelect = (id: string) => {
     if (id === selectedId) return;
@@ -40,7 +44,7 @@ export function MmaCageScene() {
   return (
     <div className="relative flex w-full flex-col items-center pb-4">
       <div className="flex flex-wrap items-center justify-center gap-1 rounded-full border border-accent/30 bg-black/50 p-1 backdrop-blur-sm">
-        {MMA_FIGHT_CARDS.map((card) => {
+        {MUAYTHAI_FIGHT_CARDS.map((card) => {
           const active = card.id === selectedId;
           return (
             <div key={card.id} className="relative">
@@ -101,7 +105,7 @@ export function MmaCageScene() {
         </AnimatePresence>
 
         <div className="relative h-72 min-w-0 flex-1 sm:h-96 md:h-[32rem] lg:h-[38rem] lg:max-w-2xl">
-          <MmaOctagonCage
+          <MuayThaiCage3D
             key={canvasKey}
             matchup={selected}
             reduceMotion={reduceMotion}
@@ -117,7 +121,7 @@ export function MmaCageScene() {
           <ConfettiBurst burstKey={burstKey} reduceMotion={reduceMotion} />
 
           {/* bottom-[20%] rather than bottom-2: the camera framing (see
-              mma-octagon-cage.tsx) leaves a deliberate clip-safety margin
+              muaythai-cage-3d.tsx) leaves a deliberate clip-safety margin
               below the cage floor, so pinning to the box's true bottom edge
               leaves the label floating in that empty gap below the cage. */}
           <span className="pointer-events-none absolute bottom-[20%] left-2 z-20 flex items-center gap-1.5 rounded-full bg-background/70 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em] text-accent backdrop-blur-sm">
@@ -127,7 +131,7 @@ export function MmaCageScene() {
               animate={reduceMotion ? { opacity: 1 } : { opacity: [1, 0.25, 1] }}
               transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
             />
-            MMA &middot; The Cage
+            Muay Thai &middot; The Cage
           </span>
         </div>
 
@@ -148,3 +152,5 @@ export function MmaCageScene() {
     </div>
   );
 }
+
+export default MuayThaiCageScene;
