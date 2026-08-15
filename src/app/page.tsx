@@ -1,5 +1,6 @@
 import { FightTreeSection } from "@/components/fight-tree-section";
 import { LandingExperience } from "@/components/landing-experience";
+import { SponsorsSection } from "@/components/sponsors-section";
 import { TrashTalksSection } from "@/components/trash-talks-section";
 import { WhoWillWinSection } from "@/components/who-will-win-section";
 import { ANNOUNCEMENTS, EVENT, SITE_URL } from "@/lib/landing-content";
@@ -46,6 +47,7 @@ export default async function Home() {
       <FightTreeSection />
       <TrashTalksSection videos={trashTalkVideos} />
       <WhoWillWinSection />
+      <SponsorsSection />
     </>
   );
 }

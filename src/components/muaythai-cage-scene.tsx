@@ -3,12 +3,14 @@
 import dynamic from "next/dynamic";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
+import { CommentsSection } from "@/components/comments-section";
 import { ConfettiBurst } from "@/components/confetti-burst";
 import { ConnectorLine, FighterVoteCard } from "@/components/fight-vote-card";
 import {
   DEFAULT_MUAYTHAI_FIGHT_CARD,
   MUAYTHAI_FIGHT_CARDS,
 } from "@/lib/muaythai-fight-card-content";
+import { useFightVotes } from "@/lib/use-fight-votes";
 
 const MuayThaiCage3D = dynamic(() => import("@/components/muaythai-cage-3d"), {
   ssr: false,
@@ -34,6 +36,8 @@ export function MuayThaiCageScene() {
 
   const selected =
     MUAYTHAI_FIGHT_CARDS.find((card) => card.id === selectedId) ?? MUAYTHAI_FIGHT_CARDS[0];
+  const { counts, votedSide, vote } = useFightVotes(selected.id);
+  const tied = !counts || counts.left === counts.right;
 
   const handleSelect = (id: string) => {
     if (id === selectedId) return;
@@ -99,7 +103,14 @@ export function MuayThaiCageScene() {
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="flex shrink-0 items-center gap-1 sm:gap-3 md:gap-4"
           >
-            <FighterVoteCard fighter={selected.left} />
+            <FighterVoteCard
+              fighter={selected.left}
+              count={counts?.left}
+              voted={votedSide === "left"}
+              disabled={votedSide === "right"}
+              leading={tied ? undefined : (counts?.left ?? 0) > (counts?.right ?? 0)}
+              onVote={() => vote("left")}
+            />
             <ConnectorLine reverse className="h-2 w-5 sm:w-10 md:w-16 lg:w-20" />
           </motion.div>
         </AnimatePresence>
@@ -145,10 +156,19 @@ export function MuayThaiCageScene() {
             className="flex shrink-0 items-center gap-1 sm:gap-3 md:gap-4"
           >
             <ConnectorLine className="h-2 w-5 sm:w-10 md:w-16 lg:w-20" />
-            <FighterVoteCard fighter={selected.right} />
+            <FighterVoteCard
+              fighter={selected.right}
+              count={counts?.right}
+              voted={votedSide === "right"}
+              disabled={votedSide === "left"}
+              leading={tied ? undefined : (counts?.right ?? 0) > (counts?.left ?? 0)}
+              onVote={() => vote("right")}
+            />
           </motion.div>
         </AnimatePresence>
       </div>
+
+      <CommentsSection fightId={selected.id} />
     </div>
   );
 }

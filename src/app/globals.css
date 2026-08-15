@@ -211,6 +211,23 @@ body {
   animation: card-glow 3.2s ease-in-out infinite;
 }
 
+/* Sponsor strip in sponsors-section.tsx: two copies of the logo strip
+   placed back to back in a 200%-wide track. Animating from -50% to 0%
+   (rather than the more common 0% to -50%) reads as the strip sliding
+   left-to-right instead of right-to-left. */
+@keyframes marquee-ltr {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.marquee-track {
+  animation: marquee-ltr 26s linear infinite;
+}
+
 /* Small dashes drifting along the cage-to-fighter connector paths in
    mma-cage-scene.tsx, read as energy "pouring" down from the cage. */
 @keyframes connector-flow {

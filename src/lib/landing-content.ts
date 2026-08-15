@@ -56,4 +56,5 @@ export const NAV_LINKS: NavLink[] = [
   { label: "Who will win?", href: "/#who-will-win" },
   { label: "Trash Talks", href: "/#trash-talks" },
   { label: "Fight Tree", href: "/#fight-tree" },
+  { label: "Sponsors", href: "/#sponsors" },
 ];
