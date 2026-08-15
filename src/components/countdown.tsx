@@ -99,30 +99,30 @@ export function Countdown() {
 
       <span
         aria-hidden
-        className="flex aspect-square w-11 shrink-0 select-none items-center justify-center rounded-md font-ethiopic text-xl leading-none text-accent sm:w-12 sm:text-2xl"
+        className="flex aspect-square w-14 shrink-0 select-none items-center justify-center rounded-md font-ethiopic text-2xl leading-none text-accent sm:w-16 sm:text-3xl"
       >
         {GEEZ_DAY}
       </span>
 
       <div aria-hidden className="flex flex-col gap-1">
-        <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-foreground/60 sm:text-xs">
+        <span className="font-mono text-xs uppercase tracking-[0.35em] text-foreground/60 sm:text-sm">
           {MONTH_DAY}
         </span>
 
         {time?.done ? (
-          <span className="font-display text-lg uppercase tracking-widest text-kush sm:text-xl">
+          <span className="font-display text-2xl uppercase tracking-widest text-kush sm:text-3xl">
             Live Now
           </span>
         ) : (
-          <div className="flex items-baseline gap-1">
+          <div className="flex items-baseline gap-1.5">
             {units.map((unit, i) => (
-              <div key={unit.label} className="flex items-baseline gap-0.5">
+              <div key={unit.label} className="flex items-baseline gap-1">
                 <Digits
                   value={unit.value}
                   reduceMotion={reduceMotion}
-                  className="font-display text-lg tabular-nums text-accent sm:text-xl"
+                  className="font-display text-2xl tabular-nums text-accent sm:text-3xl"
                 />
-                <span className="font-mono text-[9px] text-foreground/50">{unit.label}</span>
+                <span className="font-mono text-xs text-foreground/50">{unit.label}</span>
                 {i < units.length - 1 && (
                   <span className="ml-0.5 text-foreground/30">:</span>
                 )}
@@ -131,7 +131,7 @@ export function Countdown() {
           </div>
         )}
 
-        <span className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/40 sm:text-[10px]">
+        <span className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/40 sm:text-xs">
           To First Bell
         </span>
       </div>

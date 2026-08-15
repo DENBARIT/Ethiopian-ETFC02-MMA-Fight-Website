@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { castVote, getVoteCounts, type VoteSide } from "@/lib/db";
 import { isValidFightId } from "@/lib/fight-ids";
+import { isSameOrigin } from "@/lib/same-origin";
 
 export async function GET(request: Request) {
   const fightId = new URL(request.url).searchParams.get("fightId");
@@ -13,6 +14,10 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
+  if (!isSameOrigin(request)) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
   const body = await request.json().catch(() => null);
   const fightId = body?.fightId;
   const side = body?.side;

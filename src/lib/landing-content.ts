@@ -3,9 +3,9 @@ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:30
 export const EVENT = {
   name: "Adwa Fight Night",
   nameAmharic: "የአድዋ የትግል ምሽት",
-  tagline: "10 bouts, one card: boxing, Muay Thai and MMA under one roof.",
+  tagline: "11 bouts, one card: boxing, Muay Thai and MMA under one roof.",
   description:
-    "Adwa Fight Night brings 10 bouts across boxing, Muay Thai and MMA to Addis Ababa on 27 August — 3 boxing matches, 4 MMA matches, 3 Muay Thai combats and one women's title fight.",
+    "Adwa Fight Night (ETFC 02) hits Addis Ababa on 27 August. Main event: Sedo Martial Art vs Johnny Jitsu, plus 10 more bouts across boxing, Muay Thai and MMA.",
   date: "2026-08-27T18:00:00+03:00",
   readableDate: "27 August 2026",
   geezDate: "፳፯ ነሐሴ",
@@ -36,8 +36,8 @@ export interface Announcement {
 }
 
 export const ANNOUNCEMENTS: Announcement[] = [
-  { id: "boxing", kicker: "Discipline", value: "3 Boxing Matches", panel: "R" },
-  { id: "matches", kicker: "Fight Card", value: "10 Matches", panel: "L" },
+  { id: "boxing", kicker: "Discipline", value: "4 Boxing Matches", panel: "R" },
+  { id: "matches", kicker: "Fight Card", value: "11 Matches", panel: "L" },
   { id: "muaythai", kicker: "Discipline", value: "3 Muay Thai Combats", panel: "Z" },
   { id: "mma", kicker: "Discipline", value: "4 MMA Matches", panel: "R" },
   { id: "womens", kicker: "Title Fight", value: "1 Women's Title", panel: "L" },

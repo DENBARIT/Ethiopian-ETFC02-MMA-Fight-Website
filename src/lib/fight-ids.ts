@@ -13,3 +13,18 @@ export const ALL_FIGHT_IDS: string[] = [
 export function isValidFightId(id: unknown): id is string {
   return typeof id === "string" && ALL_FIGHT_IDS.includes(id);
 }
+
+export interface FightMatchupSummary {
+  id: string;
+  left: string;
+  right: string;
+}
+
+/** Every bout's contestants, across all three disciplines — the single
+ * source of truth for fighter names in SEO copy (JSON-LD subEvents, the
+ * sr-only summary) so that list can never drift from the real fight card. */
+export const ALL_MATCHUPS: FightMatchupSummary[] = [
+  ...MMA_FIGHT_CARDS.map((c) => ({ id: c.id, left: c.left.name, right: c.right.name })),
+  ...BOXING_FIGHT_CARDS.map((c) => ({ id: c.id, left: c.left.name, right: c.right.name })),
+  ...MUAYTHAI_FIGHT_CARDS.map((c) => ({ id: c.id, left: c.left.name, right: c.right.name })),
+];

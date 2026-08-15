@@ -45,7 +45,7 @@ export function LandingExperience() {
               </div>
               <div className="mt-auto space-y-4 pb-2">
                 <p className="max-w-lg font-mono text-[11px] uppercase tracking-[0.28em] text-(--tagline) sm:text-xs">
-                  Addis Ababa &middot; ETFC2 &middot; One night &middot; Ten bouts,
+                  Addis Ababa &middot; ETFC2 &middot; One night &middot; Eleven bouts,
                 </p>
                 <Countdown />
               </div>
@@ -57,6 +57,11 @@ export function LandingExperience() {
               images={PANEL_IMAGES.R}
               intervalMs={PANEL_INTERVALS_MS.R}
               alt={`Fighters from the ${EVENT.name} card`}
+              // Below sm the L/R/Z panels stack (R and Z need a scroll), but
+              // from sm up .landing-grid shows all three at once with no
+              // scroll — same above-the-fold hero as L, so it gets the same
+              // priority hint (only its first frame — see rotating-panel.tsx).
+              priority
               sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 44vw"
             />
             <AnnouncementBadge panel="R" />
@@ -67,6 +72,7 @@ export function LandingExperience() {
               images={PANEL_IMAGES.Z}
               intervalMs={PANEL_INTERVALS_MS.Z}
               alt={`Fighters from the ${EVENT.name} card`}
+              priority
               sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 44vw"
             />
             <AnnouncementBadge panel="Z" />

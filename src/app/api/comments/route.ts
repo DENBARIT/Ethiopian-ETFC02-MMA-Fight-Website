@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getComments, postComment } from "@/lib/db";
 import { isValidFightId } from "@/lib/fight-ids";
+import { isSameOrigin } from "@/lib/same-origin";
 
 const DEFAULT_LIMIT = 6;
 const MAX_LIMIT = 30;
@@ -22,6 +23,10 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
+  if (!isSameOrigin(request)) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
   const body = await request.json().catch(() => null);
   const fightId = body?.fightId;
   const rawAuthor = typeof body?.author === "string" ? body.author.trim() : "";

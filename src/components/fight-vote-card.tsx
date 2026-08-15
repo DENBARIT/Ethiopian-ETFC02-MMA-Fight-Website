@@ -120,6 +120,7 @@ export function FighterVoteCard({
     if (voted && !wasVoted.current) {
       setCelebrate(true);
       const timer = setTimeout(() => setCelebrate(false), 2200);
+      wasVoted.current = true;
       return () => clearTimeout(timer);
     }
     wasVoted.current = voted;

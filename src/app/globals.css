@@ -195,6 +195,58 @@ body {
   }
 }
 
+/* Shared by mma-cage-scene.tsx / boxing-ring-scene.tsx / muaythai-cage-scene.tsx.
+   Below sm, a card+line unit (~130px) on each flank leaves the arena itself
+   under 100px wide on a typical 360-430px phone — so on phones the arena
+   takes its own full-width row up top with both contestants in a row
+   underneath, and only from sm up (once there's actually room) do they
+   move to flank the arena left/right in a single row. */
+.fight-scene-grid {
+  display: grid;
+  width: 100%;
+  max-width: 72rem;
+  align-items: center;
+  gap: 0.5rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "cage cage"
+    "left right";
+}
+
+.fight-scene-grid > [data-area="cage"] {
+  grid-area: cage;
+  width: 100%;
+}
+
+.fight-scene-grid > [data-area="left"] {
+  grid-area: left;
+  justify-self: end;
+}
+
+.fight-scene-grid > [data-area="right"] {
+  grid-area: right;
+  justify-self: start;
+}
+
+@media (min-width: 640px) {
+  .fight-scene-grid {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: "left cage right";
+    gap: 0.75rem;
+  }
+
+  .fight-scene-grid > [data-area="left"],
+  .fight-scene-grid > [data-area="right"] {
+    justify-self: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .fight-scene-grid {
+    gap: 1rem;
+  }
+}
+
 @keyframes card-glow {
   0%,
   100% {

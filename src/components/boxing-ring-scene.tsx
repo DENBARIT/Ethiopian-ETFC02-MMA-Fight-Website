@@ -91,10 +91,11 @@ export function BoxingRingScene() {
           its flanks to that matchup's contestant — the ring canvas itself
           stays mounted across fight switches; only the flanking lines +
           cards re-animate. */}
-      <div className="mt-1 flex w-full max-w-6xl items-center justify-center gap-1 sm:mt-2 sm:gap-3 md:gap-4">
+      <div className="fight-scene-grid mt-1 sm:mt-2">
         <AnimatePresence mode="wait">
           <motion.div
             key={selected.id}
+            data-area="left"
             initial={{ opacity: 0, x: reduceMotion ? 0 : -16 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: reduceMotion ? 0 : -16 }}
@@ -109,11 +110,11 @@ export function BoxingRingScene() {
               leading={tied ? undefined : (counts?.left ?? 0) > (counts?.right ?? 0)}
               onVote={() => vote("left")}
             />
-            <ConnectorLine reverse className="h-2 w-5 sm:w-10 md:w-16 lg:w-20" />
+            <ConnectorLine reverse className="hidden h-2 sm:block sm:w-10 md:w-16 lg:w-20" />
           </motion.div>
         </AnimatePresence>
 
-        <div className="relative h-72 min-w-0 flex-1 sm:h-96 md:h-[32rem] lg:h-[38rem] lg:max-w-2xl">
+        <div data-area="cage" className="relative h-72 w-full sm:h-96 md:h-[32rem] lg:h-[38rem] lg:max-w-2xl">
           <BoxingRing3D
             key={canvasKey}
             matchup={selected}
@@ -137,13 +138,14 @@ export function BoxingRingScene() {
         <AnimatePresence mode="wait">
           <motion.div
             key={selected.id}
+            data-area="right"
             initial={{ opacity: 0, x: reduceMotion ? 0 : 16 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: reduceMotion ? 0 : 16 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="flex shrink-0 items-center gap-1 sm:gap-3 md:gap-4"
           >
-            <ConnectorLine className="h-2 w-5 sm:w-10 md:w-16 lg:w-20" />
+            <ConnectorLine className="hidden h-2 sm:block sm:w-10 md:w-16 lg:w-20" />
             <FighterVoteCard
               fighter={selected.right}
               count={counts?.right}

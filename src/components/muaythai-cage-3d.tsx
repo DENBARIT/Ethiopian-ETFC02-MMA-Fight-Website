@@ -6,9 +6,8 @@ import { ContactShadows, MeshReflectorMaterial, useTexture } from "@react-three/
 import * as THREE from "three";
 import type { MuayThaiCardMatchup } from "@/lib/muaythai-fight-card-content";
 
-// Same octagon fence as mma-octagon-cage.tsx, recolored yellow-and-white
-// per the reference photo (public/who-will-win/muaythai-cage.png) — brass
-// rails and a white fence/floor instead of MMA's black posts.
+// Same octagon fence as mma-octagon-cage.tsx, recolored yellow-and-white —
+// brass rails and a white fence/floor instead of MMA's black posts.
 const COLORS = {
   limestone: "#e6e2d8",
   brass: "#e4b33c",

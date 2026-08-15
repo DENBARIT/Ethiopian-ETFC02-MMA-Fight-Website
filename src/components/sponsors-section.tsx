@@ -23,23 +23,36 @@ export function SponsorsSection() {
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-background to-transparent sm:w-24" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-background to-transparent sm:w-24" />
 
-        <div className="marquee-track flex w-max items-center gap-10 sm:gap-16">
+        <div className="marquee-track flex w-max items-center">
           {[0, 1].map((copy) => (
-            <div
-              key={copy}
-              // Source strip is 1217x80; cropping the box to a 1217/72
-              // ratio and anchoring the image to the bottom (object-bottom)
-              // zooms in ~10% and trims that off the top edge only.
-              className="relative aspect-[1217/72] h-12 shrink-0 sm:h-16"
-            >
-              <Image
-                src="/who-will-win/sponsors.png"
-                alt={copy === 0 ? "Event sponsors" : ""}
-                aria-hidden={copy === 1}
-                fill
-                sizes="(max-width: 640px) 55vw, 30rem"
-                className="object-cover object-bottom"
-              />
+            <div key={copy} className="flex shrink-0 items-center">
+              <div
+                // Source strip is 1217x80; cropping the box to a 1217/72
+                // ratio and anchoring the image to the bottom (object-bottom)
+                // zooms in ~10% and trims that off the top edge only.
+                className="relative aspect-[1217/72] h-12 shrink-0 sm:h-16"
+              >
+                <Image
+                  src="/who-will-win/sponsors.png"
+                  alt={copy === 0 ? "Event sponsors" : ""}
+                  aria-hidden={copy === 1}
+                  fill
+                  sizes="(max-width: 640px) 55vw, 30rem"
+                  className="object-cover object-bottom"
+                />
+              </div>
+
+              {/* Trace line filling the gap between loop copies — appears
+                  after every copy (including the last) so the seam reads
+                  the same at the wrap-around point as everywhere else. */}
+              <span
+                aria-hidden
+                className="mx-6 flex shrink-0 items-center gap-1 text-accent/50 sm:mx-10"
+              >
+                <span className="size-1 shrink-0 rounded-full bg-current" />
+                <span className="h-px w-8 bg-current sm:w-14" />
+                <span className="size-1 shrink-0 rounded-full bg-current" />
+              </span>
             </div>
           ))}
         </div>

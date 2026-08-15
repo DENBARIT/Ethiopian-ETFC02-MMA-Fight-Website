@@ -65,7 +65,11 @@ export function RotatingPanel({
             src={images[index]}
             alt={alt}
             fill
-            priority={priority}
+            // Only the very first frame is a real above-the-fold candidate —
+            // later rotations mount minutes into the visit and have no
+            // business being eagerly preloaded just because the panel
+            // itself started out priority.
+            priority={priority && index === 0}
             sizes={sizes}
             className="object-cover"
           />

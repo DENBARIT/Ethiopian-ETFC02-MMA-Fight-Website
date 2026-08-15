@@ -6,6 +6,8 @@ import {
   Noto_Sans_Ethiopic,
   Permanent_Marker,
 } from "next/font/google";
+import { BackgroundMusic } from "@/components/background-music";
+import { IntroOverlay } from "@/components/intro-overlay";
 import { EVENT, SITE_URL } from "@/lib/landing-content";
 import "./globals.css";
 
@@ -57,6 +59,10 @@ export const metadata: Metadata = {
     "Muay Thai Ethiopia",
     "Ethiopian fight card",
     "Adwa Fight Night",
+    "ETFC 02",
+    "Sedo Martial Art vs Johnny Jitsu",
+    "Inspector Boyka vs Edris",
+    "Biniyam vs Esubalew",
   ],
   alternates: { canonical: "/" },
   openGraph: {
@@ -86,6 +92,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full">
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+        <IntroOverlay />
+        <BackgroundMusic />
         {children}
       </body>
     </html>
