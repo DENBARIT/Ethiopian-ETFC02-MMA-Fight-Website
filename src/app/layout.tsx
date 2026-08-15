@@ -4,6 +4,7 @@ import {
   JetBrains_Mono,
   Manrope,
   Noto_Sans_Ethiopic,
+  Permanent_Marker,
 } from "next/font/google";
 import { EVENT, SITE_URL } from "@/lib/landing-content";
 import "./globals.css";
@@ -33,6 +34,13 @@ const notoSansEthiopic = Noto_Sans_Ethiopic({
   subsets: ["ethiopic", "latin"],
   weight: "variable",
   variable: "--font-noto-ethiopic",
+  display: "swap",
+});
+
+const permanentMarker = Permanent_Marker({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-permanent-marker",
   display: "swap",
 });
 
@@ -74,7 +82,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${anton.variable} ${manrope.variable} ${jetbrainsMono.variable} ${notoSansEthiopic.variable} h-full antialiased`}
+      className={`${anton.variable} ${manrope.variable} ${jetbrainsMono.variable} ${notoSansEthiopic.variable} ${permanentMarker.variable} h-full antialiased`}
     >
       <body className="min-h-full">
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />

@@ -1,8 +1,12 @@
 import { FightTreeSection } from "@/components/fight-tree-section";
 import { LandingExperience } from "@/components/landing-experience";
+import { TrashTalksSection } from "@/components/trash-talks-section";
+import { WhoWillWinSection } from "@/components/who-will-win-section";
 import { ANNOUNCEMENTS, EVENT, SITE_URL } from "@/lib/landing-content";
+import { getTrashTalkVideosWithThumbnails } from "@/lib/trashtalk-content";
 
-export default function Home() {
+export default async function Home() {
+  const trashTalkVideos = await getTrashTalkVideosWithThumbnails();
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SportsEvent",
@@ -40,6 +44,8 @@ export default function Home() {
       </p>
       <LandingExperience />
       <FightTreeSection />
+      <TrashTalksSection videos={trashTalkVideos} />
+      <WhoWillWinSection />
     </>
   );
 }
