@@ -71,8 +71,8 @@ export default async function Home() {
       </p>
       <LandingExperience />
       <FightTreeSection />
-      <TrashTalksSection videos={trashTalkVideos} />
       <WhoWillWinSection />
+      <TrashTalksSection videos={trashTalkVideos} />
       <SponsorsSection />
       <SiteFooter />
     </>
