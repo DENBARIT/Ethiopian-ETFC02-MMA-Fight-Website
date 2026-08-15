@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Modal } from "@/components/modal";
 
 const BANK_NUMBER = "1000530264924";
+const PHONE_NUMBER = "+251900648457";
 
 function LinkedInIcon() {
   return (
@@ -98,7 +99,7 @@ const LINKS = [
   { label: "GitHub", href: "https://github.com/DENBARIT", Icon: GitHubIcon },
   { label: "Email", href: "mailto:leulethiopia05@gmail.com", Icon: EmailIcon },
   { label: "Telegram", href: "https://t.me/lamanchian", Icon: TelegramIcon },
-  { label: "Phone", href: "tel:+251900648457", Icon: PhoneIcon },
+  { label: "Phone", href: `tel:${PHONE_NUMBER}`, Icon: PhoneIcon },
 ];
 
 interface DeveloperContactDialogProps {
@@ -109,12 +110,14 @@ interface DeveloperContactDialogProps {
 export function DeveloperContactDialog({ open, onClose }: DeveloperContactDialogProps) {
   const [showBank, setShowBank] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [phoneCopied, setPhoneCopied] = useState(false);
 
   useEffect(() => {
     if (!open) return;
     // eslint-disable-next-line react-hooks/set-state-in-effect -- resetting for this open
     setShowBank(false);
     setCopied(false);
+    setPhoneCopied(false);
   }, [open]);
 
   const copyBankNumber = () => {
@@ -123,6 +126,16 @@ export function DeveloperContactDialog({ open, onClose }: DeveloperContactDialog
       .then(() => {
         setCopied(true);
         setTimeout(() => setCopied(false), 1800);
+      })
+      .catch(() => {});
+  };
+
+  const copyPhoneNumber = () => {
+    navigator.clipboard
+      .writeText(PHONE_NUMBER)
+      .then(() => {
+        setPhoneCopied(true);
+        setTimeout(() => setPhoneCopied(false), 1800);
       })
       .catch(() => {});
   };
@@ -171,6 +184,20 @@ export function DeveloperContactDialog({ open, onClose }: DeveloperContactDialog
             <span className="font-mono text-[8px] uppercase tracking-wide">{label}</span>
           </a>
         ))}
+      </div>
+
+      <div className="mt-2.5 flex items-center justify-between gap-2 rounded-full border border-foreground/15 py-2.5 pl-4 pr-2">
+        <span className="truncate font-mono text-sm tracking-wider text-foreground/80">
+          {PHONE_NUMBER}
+        </span>
+        <button
+          type="button"
+          onClick={copyPhoneNumber}
+          aria-label="Copy phone number"
+          className="flex shrink-0 items-center gap-1 rounded-full bg-foreground/10 px-2.5 py-1.5 text-foreground/80 transition-colors hover:bg-accent hover:text-background"
+        >
+          {phoneCopied ? <CheckIcon /> : <CopyIcon />}
+        </button>
       </div>
 
       <div className="mt-3">
