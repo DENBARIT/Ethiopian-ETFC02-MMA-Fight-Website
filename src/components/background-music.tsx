@@ -105,11 +105,11 @@ export function BackgroundMusic() {
 
   return (
     <>
-      {/* preload="none" — a 3.4MB track shouldn't compete with images/CSS/JS
-          for bandwidth during initial load; the browser starts buffering it
-          the moment play() is actually called, whether that's the autoplay
-          attempt or the first user interaction. */}
-      <audio ref={audioRef} src="/etfc-battlefield.mp3" loop preload="none" className="hidden" />
+      {/* preload="auto" — the track needs to actually be buffered by the
+          time play() fires on mount, or "starts as the site loads" just
+          becomes "starts once it's finally fetched enough to play." Trades
+          a bit of initial bandwidth for that. */}
+      <audio ref={audioRef} src="/etfc-battlefield.mp3" loop preload="auto" className="hidden" />
       <button
         type="button"
         onClick={toggle}
