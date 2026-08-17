@@ -65,6 +65,9 @@ export const metadata: Metadata = {
     "Biniyam vs Esubalew",
   ],
   alternates: { canonical: "/" },
+  verification: {
+    google: "_lbqlP1hqgBK8XqR98_7jsSoXkdBdvesMLgrGHDJWPU",
+  },
   openGraph: {
     title: `${EVENT.name} — ${EVENT.readableDate}`,
     description: EVENT.description,
